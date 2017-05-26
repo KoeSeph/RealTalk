@@ -15,9 +15,7 @@ select,
 textarea {
     max-width: 280px;
 }
-image-backgrounds {
-    background-color: aqua;
-}
+
 
 #cf {
     transform: rotate(90deg); 
