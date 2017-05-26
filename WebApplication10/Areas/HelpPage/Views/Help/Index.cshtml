@@ -12,27 +12,58 @@
     ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
 }
 
-<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
-<header class="help-page">
-    <div class="content-wrapper">
-        <div class="float-left">
-            <h1>@ViewBag.Title</h1>
-        </div>
-    </div>
-</header>
-<div id="body" class="help-page">
-    <section class="featured">
-        <div class="content-wrapper">
-            <h2>Introduction</h2>
-            <p>
-                Provide a general description of your APIs here.
-            </p>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        @foreach (var group in apiGroups)
-        {
-            @Html.DisplayFor(m => group, "ApiGroup")
-        }
-    </section>
+<h2>Contact US</h2>
+<h3>Ask about our free estimates!</h3>
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- Style The Contact Form How Ever You Prefer -->
+<link rel="stylesheet" href="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/style.css">
+
+<form id="gform" method="POST" class="pure-form pure-form-stacked"
+      action="https://script.google.com/macros/s/AKfycbyzOivp3DvNUylh8DOgUB6FnZfpQUZJbUmQU93WUQsfhpGJmXY/exec">
+    <!-- change the form action to your script url -->
+
+    <fieldset class="pure-group">
+        <label for="name">Name: </label>
+        <input id="name" name="name" />
+    </fieldset>
+
+    <fieldset class="pure-group">
+        <label for="message">Message: </label>
+        <textarea id="message" name="message" rows="10"
+                  placeholder="Please be specific on the kind of cleaning you could like!"></textarea>
+    </fieldset>
+
+    <fieldset class="pure-group">
+        <label for="email"><em>Your</em> Email Address:</label>
+        <input id="email" name="email" type="email" value=""
+               required placeholder="your.name@email.com" />
+        <span id="email-invalid" style="visibility:hidden">
+            Must be a valid email address
+        </span>
+    </fieldset>
+
+    <fieldset class="pure-group">
+        <label for="Number">Phone Number </label>
+        <input id="color" name="Number" placeholder="1(000)000-0000" />
+    </fieldset>
+
+    <button class="button-success pure-button button-xlarge">
+        <i class="fa fa-paper-plane"></i>&nbsp;Send
+    </button>
+
+</form>
+
+<!-- Customise the Thankyou Message People See when they submit the form: -->
+<div style="display:none;" id="thankyou_message">
+    <h2>
+        <em>Thanks</em> for contacting us!
+        We will get back to you soon!
+    </h2>
 </div>
+
+<!-- Submit the Form to Google Using "AJAX" -->
+<script data-cfasync="false" type="text/javascript"
+        src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+
